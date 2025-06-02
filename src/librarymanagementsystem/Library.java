@@ -5,12 +5,6 @@ public class Library
     protected Book[] bookList = new Book[50];
     protected Member[] memberList = new Member[50];
     private String borrowerID;
-    private int count;
-
-    public int getCount()
-    {
-        return count;
-    }
 
     public void addBook(Book book)
     {
@@ -22,7 +16,6 @@ public class Library
                 break;
             }
         }
-        count++;
     }
 
     public void addMember(Member member)
@@ -35,23 +28,27 @@ public class Library
                 break;
             }
         }
-    }
-
-    public boolean searchBook(String isbn)
-    {
-        for(int i = 0; i < bookList.length; i++)
-        {
-            if(isbn.equalsIgnoreCase(bookList[i].getISBN()))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        System.out.println("Member added");
     }
 
     public void borrowBook(String isbn, String id)
     {
+        boolean idFound = false;
+
+        for(int i = 0; i < memberList.length; i++)
+        {
+            if(memberList[i] != null && memberList[i].getId().equals(id))
+            {
+                idFound = true;
+            }
+        }
+
+        if(!idFound)
+        {
+            System.out.println("ID not found, please try again...");
+            return;
+        }
+
         for(int i = 0; i < bookList.length; i++)
         {
             if(bookList[i] != null && bookList[i].getISBN().equalsIgnoreCase(isbn))
@@ -62,7 +59,7 @@ public class Library
                 }
                 else
                 {
-                    System.out.println("Book borrowed succesfully");
+                    System.out.println("Book borrowed successfully");
                     bookList[i].isBorrowed = true;
                     borrowerID = id;
                 }
@@ -75,11 +72,11 @@ public class Library
     {
         for(int i = 0; i < bookList.length; i++)
         {
-            if(bookList[i] != null && bookList[i].isBorrowed == false)
+            if(bookList[i] != null && !bookList[i].isBorrowed)
             {
-                System.out.println("Time travelling might have occured");
+                System.out.println("Time travelling might have occurred");
             }
-            else if(bookList[i] != null && bookList[i].isBorrowed == true)
+            else if(bookList[i] != null && bookList[i].isBorrowed)
             {
                 System.out.println("Book returned");
                 bookList[i].isBorrowed = false;
@@ -95,7 +92,7 @@ public class Library
 
         for(int i = 0; i < bookList.length; i++)
         {
-            if(bookList[i] != null && bookList[i].isBorrowed == false)
+            if(bookList[i] != null && bookList[i].isBorrowed)
             {
                 System.out.println("Book[" + bookCount + "]: ");
                 System.out.println(bookList[i].toString());
@@ -118,7 +115,7 @@ public class Library
 
         for(int i = 0; i < bookList.length; i++)
         {
-            if(bookList[i] != null && bookList[i].isBorrowed == true)
+            if(bookList[i] != null && bookList[i].isBorrowed)
             {
                 System.out.println("Book[" + bookCount + "]: ");
                 System.out.println(bookList[i].toString());

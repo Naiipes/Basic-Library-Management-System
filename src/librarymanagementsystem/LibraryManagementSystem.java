@@ -10,6 +10,9 @@ import java.util.Scanner;
  *
  * @author naiipes
  */
+// TO-DO
+// Track the ID of the member when they borrow a book
+
 public class LibraryManagementSystem 
 {
     private static Scanner scanner = new Scanner(System.in);
