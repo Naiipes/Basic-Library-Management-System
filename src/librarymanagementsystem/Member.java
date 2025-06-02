@@ -18,19 +18,6 @@ public class Member
         this.name = name;
         this.id = id;
     }
-    
-    public void addMember(Member member, Member[] list)
-    {
-        for(int i = 0; i < list.length; i++)
-        {
-            if(list[i] == null)
-            {
-                list[i] = member;
-                break;
-            }
-        }
-    }
-    
     public String getName()
     {
         return name;

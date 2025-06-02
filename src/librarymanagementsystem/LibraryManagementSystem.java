@@ -13,17 +13,13 @@ import java.util.Scanner;
 public class LibraryManagementSystem 
 {
     private static Scanner scanner = new Scanner(System.in);
-    //private static Library library = new Library();
+    private static Library library = new Library();
     
     //feel free to change any part of this code
     //NB: this code is incomplete. It's just to give you a quick start on the main menu of the library.
     
     public static void main(String[] args)
-    {   
-        Book[] bookList = new Book[50];
-        
-        Member[] memberList = new Member[50];
-        
+    {
         while (true)
         {
             System.out.println("Library Management System Menu:");
@@ -42,9 +38,7 @@ public class LibraryManagementSystem
             switch (choice)
             {
                 case 1:
-                    //logic to add your book here.
-                    
-                    if(bookList.length > 50)
+                    if(library.bookList.length > 50)
                     {
                         System.out.println("Sorry, our shelves are full");
                     }
@@ -58,48 +52,38 @@ public class LibraryManagementSystem
                         String isbn = scanner.nextLine();
                         
                         Book book = new Book(isbn, author, title);
-                        book.addBook(book, bookList);
+                        library.addBook(book);
                     }
-                    
-                    //you can for example call a function or some function within a class, etc.
                     break;
                 case 2:
-                    //call some function here.
                     System.out.print("Enter name: ");
                     String name = scanner.nextLine();
                     System.out.print("Enter ID: ");
                     String id = scanner.nextLine();
                     
                     Member member = new Member(name, id);
-                    member.addMember(member, memberList);
-                  
+                    library.addMember(member);
                     break;
                 case 3:
-                    //call some function here.
-                    
                     System.out.println("Enter ID");
                     String idToBorrow = scanner.nextLine();
                     System.out.print("Enter ISBN: ");
                     String isbnToBorrow = scanner.nextLine();
                     
-                    bookList[0].borrowBook(isbnToBorrow, idToBorrow, bookList);
-                    
+                    library.borrowBook(isbnToBorrow, idToBorrow);
                     break;
                 case 4:
                     //call some function here.
                     System.out.print("Enter ISBN: ");
                     String isbnToReturn = scanner.nextLine();
-                    bookList[0].returnBook(isbnToReturn, bookList);
+                    library.returnBook(isbnToReturn);
                     
                     break;
                 case 5:
-                    //call some function here.
-                    bookList[0].displayAvailableBooks(bookList);
-                    
+                    library.displayAvailableBooks();
                     break;
                 case 6:
-                    //call some function here.
-                    bookList[0].displayCheckedOutBooks(bookList);
+                    library.displayCheckedOutBooks();
                     break;
                 case 7:
                     System.out.println("Exiting...");
@@ -108,5 +92,6 @@ public class LibraryManagementSystem
                     System.out.println("Invalid choice. Please try again.");
             }
         }
+
     }
 }
