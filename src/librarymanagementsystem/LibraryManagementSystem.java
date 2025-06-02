@@ -16,8 +16,7 @@ public class LibraryManagementSystem
     private static Library library = new Library();
     
     //feel free to change any part of this code
-    //NB: this code is incomplete. It's just to give you a quick start on the main menu of the library.
-    
+
     public static void main(String[] args)
     {
         while (true)
