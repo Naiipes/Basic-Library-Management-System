@@ -15,7 +15,7 @@ public class LibraryManagementSystem
     private static Scanner scanner = new Scanner(System.in);
     private static Library library = new Library();
     
-    //feel free to change any part of this code
+    //feel free to change any part of this code.
 
     public static void main(String[] args)
     {
