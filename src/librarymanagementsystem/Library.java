@@ -40,6 +40,7 @@ public class Library
             if(memberList[i] != null && memberList[i].getId().equals(id))
             {
                 idFound = true;
+                break;
             }
         }
 
@@ -72,11 +73,11 @@ public class Library
     {
         for(int i = 0; i < bookList.length; i++)
         {
-            if(bookList[i] != null && !bookList[i].isBorrowed)
+            if(bookList[i] != null && !bookList[i].isBorrowed && bookList[i].getISBN().equals(isbn))
             {
                 System.out.println("Time travelling might have occurred");
             }
-            else if(bookList[i] != null && bookList[i].isBorrowed)
+            else if(bookList[i] != null && bookList[i].isBorrowed && bookList[i].getISBN().equals(isbn))
             {
                 System.out.println("Book returned");
                 bookList[i].isBorrowed = false;
@@ -92,7 +93,7 @@ public class Library
 
         for(int i = 0; i < bookList.length; i++)
         {
-            if(bookList[i] != null && bookList[i].isBorrowed)
+            if(bookList[i] != null && !bookList[i].isBorrowed)
             {
                 System.out.println("Book[" + bookCount + "]: ");
                 System.out.println(bookList[i].toString());
