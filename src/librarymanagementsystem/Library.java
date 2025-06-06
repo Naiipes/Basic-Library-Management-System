@@ -1,33 +1,28 @@
 package librarymanagementsystem;
 
+import java.util.*;
+
 public class Library
 {
-    protected Book[] bookList = new Book[50];
-    protected Member[] memberList = new Member[50];
+    protected List<Book> bookList;
+    protected List<Member> memberList;
     private String borrowerID;
-
-    public void addBook(Book book)
+    
+    public Library()
     {
-        for(int i = 0; i < bookList.length; i++)
-        {
-            if(bookList[i] == null)
-            {
-                bookList[i] = book;
-                break;
-            }
-        }
+        bookList = new ArrayList<Book>();
+        memberList = new ArrayList<Member>();
+    }
+
+    public void addBook(Book book) // Easier way to approach this would be creating a counter 
+    {   
+        bookList.add(book);
+        System.out.println("Book added");
     }
 
     public void addMember(Member member)
     {
-        for(int i = 0; i < memberList.length; i++)
-        {
-            if(memberList[i] == null)
-            {
-                memberList[i] = member;
-                break;
-            }
-        }
+        memberList.add(member);
         System.out.println("Member added");
     }
 
@@ -35,9 +30,9 @@ public class Library
     {
         boolean idFound = false;
 
-        for(int i = 0; i < memberList.length; i++)
+        for(int i = 0; i < memberList.size(); i++)
         {
-            if(memberList[i] != null && memberList[i].getId().equals(id))
+            if(memberList.get(i) != null && memberList.get(i).getId().equals(id))
             {
                 idFound = true;
                 break;
@@ -50,18 +45,18 @@ public class Library
             return;
         }
 
-        for(int i = 0; i < bookList.length; i++)
+        for(int i = 0; i < bookList.size(); i++)
         {
-            if(bookList[i] != null && bookList[i].getISBN().equalsIgnoreCase(isbn))
+            if(bookList.get(i) != null && bookList.get(i).getISBN().equalsIgnoreCase(isbn))
             {
-                if(bookList[i].isBorrowed)
+                if(bookList.get(i).isBorrowed)
                 {
                     System.out.println("Book already borrowed by " + borrowerID);
                 }
                 else
                 {
                     System.out.println("Book borrowed successfully");
-                    bookList[i].isBorrowed = true;
+                    bookList.get(i).isBorrowed = true;
                     borrowerID = id;
                 }
             }
@@ -71,16 +66,16 @@ public class Library
 
     public void returnBook(String isbn)
     {
-        for(int i = 0; i < bookList.length; i++)
+        for(int i = 0; i < bookList.size(); i++)
         {
-            if(bookList[i] != null && !bookList[i].isBorrowed && bookList[i].getISBN().equals(isbn))
+            if(bookList.get(i) != null && !bookList.get(i).isBorrowed && bookList.get(i).getISBN().equals(isbn))
             {
                 System.out.println("Time travelling might have occurred");
             }
-            else if(bookList[i] != null && bookList[i].isBorrowed && bookList[i].getISBN().equals(isbn))
+            else if(bookList.get(i) != null && bookList.get(i).isBorrowed && bookList.get(i).getISBN().equals(isbn))
             {
                 System.out.println("Book returned");
-                bookList[i].isBorrowed = false;
+                bookList.get(i).isBorrowed = false;
                 borrowerID = null;
             }
         }
@@ -91,12 +86,12 @@ public class Library
     {
         int bookCount = 1;
 
-        for(int i = 0; i < bookList.length; i++)
+        for(int i = 0; i < bookList.size(); i++)
         {
-            if(bookList[i] != null && !bookList[i].isBorrowed)
+            if(bookList.get(i) != null && !bookList.get(i).isBorrowed)
             {
                 System.out.println("Book[" + bookCount + "]: ");
-                System.out.println(bookList[i].toString());
+                System.out.println(bookList.get(i).toString());
                 bookCount++;
             }
 
@@ -108,18 +103,16 @@ public class Library
         }
     }
 
-
-
     public void displayCheckedOutBooks()
     {
         int bookCount = 1;
 
-        for(int i = 0; i < bookList.length; i++)
+        for(int i = 0; i < bookList.size(); i++)
         {
-            if(bookList[i] != null && bookList[i].isBorrowed)
+            if(bookList.get(i) != null && bookList.get(i).isBorrowed)
             {
                 System.out.println("Book[" + bookCount + "]: ");
-                System.out.println(bookList[i].toString());
+                System.out.println(bookList.get(i).toString());
                 bookCount++;
             }
         }

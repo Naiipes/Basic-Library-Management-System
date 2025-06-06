@@ -10,10 +10,8 @@ import java.util.Scanner;
  *
  * @author naiipes
  */
-// TO-DO
-// Track the ID of the member when they borrow a book
 
-public class LibraryManagementSystem 
+public class LibraryManagementSystem
 {
     private static Scanner scanner = new Scanner(System.in);
     private static Library library = new Library();
@@ -40,7 +38,7 @@ public class LibraryManagementSystem
             switch (choice)
             {
                 case 1:
-                    if(library.bookList.length > 50)
+                    if(library.bookList.size() > 50)
                     {
                         System.out.println("Sorry, our shelves are full");
                     }
